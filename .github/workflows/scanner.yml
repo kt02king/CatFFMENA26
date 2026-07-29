@@ -20,10 +20,30 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Find Best CDN
+        id: find_cdn
+        run: |
+          BEST_CDN="cdn"
+          MIN_LATENCY=999
+          
+          for cdn in cdn cvs gmc aw dir ak tata bs; do
+            URL="https://dl.${cdn}.freefiremobile.com"
+            LATENCY=$(curl -o /dev/null -s -w "%{time_total}" -m 3 $URL || echo "999")
+            
+            IS_LESS=$(awk "BEGIN {print ($LATENCY < $MIN_LATENCY) ? 1 : 0}")
+            if [ "$IS_LESS" -eq 1 ]; then
+              MIN_LATENCY=$LATENCY
+              BEST_CDN=$cdn
+            fi
+          done
+          
+          echo "BEST_CDN=$BEST_CDN" >> $GITHUB_ENV
+
       - name: Run Scanner Script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          BEST_CDN: ${{ env.BEST_CDN }} 
         run: node scanner.js
 
       - name: Commit and Push History
