@@ -12,9 +12,11 @@ if (fs.existsSync(historyPath)) {
 
 const { target_settings, special_target_settings, performance, fuzzing_rules, custom_targets, modules_toggles, notifications } = config;
 
-const baseUrl = `https://dl.cdn.freefiremobile.com/common/${target_settings.version_code}/ME/${target_settings.date}/`;
-const gmcUrl = `https://dl.gmc.freefiremobile.com/common/${target_settings.version_code}/ME/${target_settings.date}/`;
-const specialUrl = `https://dl.cdn.freefiremobile.com/common/${special_target_settings.splash_anno_version}/ME/${special_target_settings.splash_anno_date}/`;
+const activeCDN = process.env.BEST_CDN || 'cdn';
+
+const baseUrl = `https://dl.${activeCDN}.freefiremobile.com/common/${target_settings.version_code}/ME/${target_settings.date}/`;
+const gmcUrl = `https://dl.${activeCDN}.freefiremobile.com/common/${target_settings.version_code}/ME/${target_settings.date}/`;
+const specialUrl = `https://dl.${activeCDN}.freefiremobile.com/common/${special_target_settings.splash_anno_version}/ME/${special_target_settings.splash_anno_date}/`;
 
 const chars = [];
 if (fuzzing_rules.use_uppercase_letters) {
@@ -165,7 +167,6 @@ const sendTelegramNotification = async (links) => {
     const chatId = process.env.TELEGRAM_CHAT_ID;
     
     if (!token || !chatId) {
-        console.log('\n[WARNING] Telegram secrets missing. Skipping notification.');
         return;
     }
 
@@ -192,7 +193,7 @@ const sendTelegramNotification = async (links) => {
 };
 
 const start = async () => {
-    console.log(`\nStarting Scan...`);
+    console.log(`\nActive CDN: dl.${activeCDN}.freefiremobile.com`);
     console.log(`Generated Unique URLs to check: ${urlArray.length}`);
     
     const workers = [];
@@ -205,7 +206,6 @@ const start = async () => {
     fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
 
     if (notifications.enable_telegram && newLinks.length > 0) {
-        console.log(`\nSending ${newLinks.length} new links to Telegram...`);
         await sendTelegramNotification(newLinks);
     }
 
