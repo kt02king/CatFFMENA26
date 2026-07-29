@@ -124,6 +124,12 @@ const stats = {
     failed: 0
 };
 
+const headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+    "Connection": "keep-alive"
+};
+
 const fetchWithTimeout = async (url) => {
     for (let i = 0; i <= performance.max_retries; i++) {
         try {
@@ -132,6 +138,7 @@ const fetchWithTimeout = async (url) => {
             
             const response = await fetch(url, {
                 method: 'HEAD',
+                headers: headers,
                 signal: controller.signal
             });
             
@@ -139,8 +146,16 @@ const fetchWithTimeout = async (url) => {
             
             if (response.status === 200) return true;
             if (response.status === 404) return false;
+            
+            if (response.status === 429 || response.status === 403 || response.status >= 500) {
+                await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+                continue;
+            }
+            
+            return false;
         } catch (error) {
             if (i === performance.max_retries) return false;
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
     }
     return false;
