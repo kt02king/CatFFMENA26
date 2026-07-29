@@ -1,0 +1,59 @@
+{
+  "target_settings": {
+    "version_code": "OB54",
+    "date": "20260722W05",
+    "languages": ["en"]
+  },
+
+  "special_target_settings": {
+    "splash_anno_version": "OB54",
+    "splash_anno_date": "20260624W01"
+  },
+
+  "performance": {
+    "concurrency_limit": 450,
+    "timeout_ms": 5000,
+    "max_retries": 1
+  },
+
+  "fuzzing_rules": {
+    "max_x_length": 3,
+    "use_uppercase_letters": true,
+    "use_numbers_in_x": true,
+    "number_suffix_max": 99,
+    "splash_start_number": 1000,
+    "splash_end_number": 1500,
+    "anno_start_number": 1000,
+    "anno_end_number": 1500
+  },
+
+  "custom_targets": {
+    "booyah_pass_numbers": ["44"],
+    "specific_event_names": []
+  },
+
+  "modules_toggles": {
+    "O": true,
+    "O_Craftland": true,
+    "OP_PNG": true,
+    "OP_JPG": true,
+    "LB": true,
+    "ST": true,
+    "ST_Craftland": true,
+    "BT_1": true,
+    "BT_2": true,
+    "BT_Craftland": true,
+    "SM": true,
+    "BG": true,
+    "TT_1": true,
+    "TT_2": true,
+    "Splash": true,
+    "Anno": true,
+    "TopUp": true,
+    "BP_Title": true
+  },
+
+  "notifications": {
+    "enable_telegram": true
+  }
+}
