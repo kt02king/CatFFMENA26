@@ -11,8 +11,8 @@
   },
 
   "performance": {
-    "concurrency_limit": 450,
-    "timeout_ms": 5000,
+    "concurrency_limit": 2000,
+    "timeout_ms": 800,
     "max_retries": 1
   },
 
