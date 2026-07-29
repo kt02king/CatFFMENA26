@@ -21,10 +21,10 @@
     "use_uppercase_letters": true,
     "use_numbers_in_x": true,
     "number_suffix_max": 99,
-    "splash_start_number": 1000,
-    "splash_end_number": 1500,
-    "anno_start_number": 1000,
-    "anno_end_number": 1500
+    "splash_start_number": 0,
+    "splash_end_number": 5000,
+    "anno_start_number": 0,
+    "anno_end_number": 5000
   },
 
   "custom_targets": {
@@ -35,15 +35,15 @@
   "modules_toggles": {
     "O": true,
     "O_Craftland": true,
-    "OP_PNG": true,
-    "OP_JPG": true,
-    "LB": true,
+    "OP_PNG": false,
+    "OP_JPG": false,
+    "LB": false,
     "ST": true,
-    "ST_Craftland": true,
-    "BT_1": true,
+    "ST_Craftland": false,
+    "BT_1": false,
     "BT_2": true,
-    "BT_Craftland": true,
-    "SM": true,
+    "BT_Craftland": false,
+    "SM": false,
     "BG": true,
     "TT_1": true,
     "TT_2": true,
