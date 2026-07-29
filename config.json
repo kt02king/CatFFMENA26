@@ -11,8 +11,8 @@
   },
 
   "performance": {
-    "concurrency_limit": 2000,
-    "timeout_ms": 800,
+    "concurrency_limit": 500,
+    "timeout_ms": 2000,
     "max_retries": 1
   },
 
@@ -34,19 +34,19 @@
 
   "modules_toggles": {
     "O": true,
-    "O_Craftland": true,
+    "O_Craftland": false,
     "OP_PNG": false,
     "OP_JPG": false,
     "LB": false,
     "ST": true,
     "ST_Craftland": false,
     "BT_1": false,
-    "BT_2": true,
+    "BT_2": false,
     "BT_Craftland": false,
     "SM": false,
     "BG": true,
-    "TT_1": true,
-    "TT_2": true,
+    "TT_1": false,
+    "TT_2": false,
     "Splash": true,
     "Anno": true,
     "TopUp": true,
