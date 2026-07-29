@@ -11,7 +11,7 @@
   },
 
   "performance": {
-    "concurrency_limit": 500,
+    "concurrency_limit": 300,
     "timeout_ms": 2000,
     "max_retries": 1
   },
@@ -33,12 +33,12 @@
   },
 
   "modules_toggles": {
-    "O": true,
+    "O": false,
     "O_Craftland": false,
     "OP_PNG": false,
     "OP_JPG": false,
     "LB": false,
-    "ST": true,
+    "ST": false,
     "ST_Craftland": false,
     "BT_1": false,
     "BT_2": false,
@@ -50,7 +50,7 @@
     "Splash": true,
     "Anno": true,
     "TopUp": true,
-    "BP_Title": true
+    "BP_Title": false
   },
 
   "notifications": {
